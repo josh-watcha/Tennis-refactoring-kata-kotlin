@@ -1,42 +1,65 @@
 class TennisGame1(private val player1Name: String, private val player2Name: String) : TennisGame {
 
-    private var m_score1: Int = 0
-    private var m_score2: Int = 0
+    private var player1Score: Int = 0
+    private var player2Score: Int = 0
 
     override fun wonPoint(playerName: String) {
-        if (playerName === "player1")
-            m_score1 += 1
+        if (playerName == "player1")
+            player1Score += 1
         else
-            m_score2 += 1
+            player2Score += 1
+    }
+
+    enum class Score(val score: Int, val displayName: String) {
+        LOVE(0, "Love"),
+        FIFTEEN(1, "Fifteen"),
+        THIRTY(2, "Thirty"),
+        FORTY(3, "Forty");
+
+        fun getScore(score: Int): Score {
+            return values().first { it.score == score }
+        }
+    }
+
+    companion object {
+        const val DEUCE = "Deuce"
+        const val ADVANTAGE_PLAYER_1 = "Advantage player1"
+        const val ADVANTAGE_PLAYER_2 = "Advantage player2"
+        const val WIN_FOR_PLAYER_1 = "Win for player1"
+        const val WIN_FOR_PLAYER_2 = "Win for player2"
     }
 
     override fun getScore(): String {
+
         var score = ""
         var tempScore = 0
-        if (m_score1 == m_score2) {
-            when (m_score1) {
-                0 -> score = "Love-All"
-                1 -> score = "Fifteen-All"
-                2 -> score = "Thirty-All"
-                else -> score = "Deuce"
+
+        if (player1Score >= 4 || player2Score >= 4) {
+            val minusResult = player1Score - player2Score
+            score = when {
+                minusResult == 0  -> {
+                    DEUCE
+                }
+                minusResult == 1 -> {
+                    ADVANTAGE_PLAYER_1
+                }
+                minusResult == -1 -> {
+                    ADVANTAGE_PLAYER_2
+                }
+                minusResult >= 2 -> {
+                    WIN_FOR_PLAYER_1
+                }
+                else -> {
+                    WIN_FOR_PLAYER_2
+                }
             }
-        } else if (m_score1 >= 4 || m_score2 >= 4) {
-            val minusResult = m_score1 - m_score2
-            if (minusResult == 1)
-                score = "Advantage player1"
-            else if (minusResult == -1)
-                score = "Advantage player2"
-            else if (minusResult >= 2)
-                score = "Win for player1"
-            else
-                score = "Win for player2"
         } else {
             for (i in 1..2) {
                 if (i == 1)
-                    tempScore = m_score1
+                    tempScore = player1Score
                 else {
                     score += "-"
-                    tempScore = m_score2
+                    tempScore = player2Score
                 }
                 when (tempScore) {
                     0 -> score += "Love"
