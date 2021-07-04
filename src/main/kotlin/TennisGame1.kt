@@ -16,8 +16,10 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         THIRTY(2, "Thirty"),
         FORTY(3, "Forty");
 
-        fun getScore(score: Int): Score {
-            return values().first { it.score == score }
+        companion object {
+            fun getScore(score: Int): Score {
+                return values().first { it.score == score }
+            }
         }
     }
 
@@ -29,46 +31,47 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         const val WIN_FOR_PLAYER_2 = "Win for player2"
     }
 
+    private fun checkDeuce(score1: Int, score2: Int): Boolean {
+        if (score1 < 3 || score2 < 3) return false
+
+        return score1 == score2
+    }
+
     override fun getScore(): String {
+        if (checkDeuce(player1Score, player2Score)) {
+            return DEUCE
+        }
 
-        var score = ""
-        var tempScore = 0
+        val isNotCheckPoint = player1Score < 4 && player2Score < 4
+        if (isNotCheckPoint) {
+            return getNotCheckPointScore(player1Score, player2Score)
+        }
+        return getResultScore(player1Score, player2Score)
+    }
 
-        if (player1Score >= 4 || player2Score >= 4) {
-            val minusResult = player1Score - player2Score
-            score = when {
-                minusResult == 0  -> {
-                    DEUCE
-                }
-                minusResult == 1 -> {
-                    ADVANTAGE_PLAYER_1
-                }
-                minusResult == -1 -> {
-                    ADVANTAGE_PLAYER_2
-                }
-                minusResult >= 2 -> {
-                    WIN_FOR_PLAYER_1
-                }
-                else -> {
-                    WIN_FOR_PLAYER_2
-                }
+    private fun getNotCheckPointScore(score1: Int, score2: Int): String {
+        val score1 = Score.getScore(score1)
+        val score2 = Score.getScore(score2)
+        return score1.displayName + "-" +
+            if (score1 == score2) "All" else score2.displayName
+    }
+
+    private fun getResultScore(score1: Int, score2: Int): String {
+        val minusResult = score1 - score2
+
+        return when {
+            minusResult == 1 -> {
+                ADVANTAGE_PLAYER_1
             }
-        } else {
-            for (i in 1..2) {
-                if (i == 1)
-                    tempScore = player1Score
-                else {
-                    score += "-"
-                    tempScore = player2Score
-                }
-                when (tempScore) {
-                    0 -> score += "Love"
-                    1 -> score += "Fifteen"
-                    2 -> score += "Thirty"
-                    3 -> score += "Forty"
-                }
+            minusResult == -1 -> {
+                ADVANTAGE_PLAYER_2
+            }
+            minusResult >= 2 -> {
+                WIN_FOR_PLAYER_1
+            }
+            else -> {
+                WIN_FOR_PLAYER_2
             }
         }
-        return score
     }
 }
