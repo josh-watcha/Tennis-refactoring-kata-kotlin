@@ -1,21 +1,21 @@
 # Tennis Refactoring Kata
 
-Imagine you work for a consultancy company, and one of your colleagues has been doing some work for the Tennis Society. The contract is for 10 hours billable work, and your colleague has spent 8.5 hours working on it. Unfortunately he has now fallen ill. He says he has completed the work, and the tests all pass. Your boss has asked you to take over from him. She wants you to spend an hour or so on the code so she can bill the client for the full 10 hours. She instructs you to tidy up the code a little and perhaps make some notes so you can give your colleague some feedback on his chosen design. You should also prepare to talk to your boss about the value of this refactoring work, over and above the extra billable hours.
+여러분이 컨설팅 회사에서 일하고 있고, 여러분의 동료 중 한 명이 테니스 협회를 위해 일을 하고 있다고 상상해 보세요. 계약은 청구 가능한 10시간이고, 당신의 동료는 8.5시간을 그것에 투자했습니다. 불행하게도 그는 지금 병에 걸렸다. 그는 자신이 그 일을 완료했고, 모든 테스트를 통과했다고 말한다. 당신의 상사가 당신에게 그의 업무를 인계해 달라고 부탁했습니다. 그녀는 10시간 내내 고객에게 청구할 수 있도록 당신이 코드 작성에 한 시간 정도를 쓰기를 원한다. 동료가 선택한 설계에 대한 피드백을 제공할 수 있도록 코드를 약간 정리하고 메모를 하도록 지시합니다. 또한 추가 청구 가능 시간을 초과하여 리팩터링 작업의 가치에 대해 상사와 상의할 준비를 해야 합니다.
 
-There are three versions of this refactoring kata, each with their own design smells and challenges. I suggest you start with the first one, with the class "TennisGame1". The test suite provided is fairly comprehensive, and fast to run. You should not need to change the tests, only run them often as you refactor.
+리팩터링 카타는 세 가지 버전이 있으며, 각 버전마다 고유의 디자인 냄새와 과제가 있습니다. 첫 번째 게임부터 시작할 것을 제안합니다. "테니스 1차전" 수업부터 시작하세요. 제공되는 테스트 제품군은 상당히 포괄적이고 실행 속도가 빠릅니다. 테스트를 변경할 필요가 없으며 리팩터할 때만 자주 실행할 수 있습니다.
 
-If you like this Kata, you may be interested in [my books](https://leanpub.com/u/emilybache) and website [SammanCoaching.org](https://sammancoaching.org)
+만약 당신이 이 Kata를 좋아한다면, 당신은 내 책과 웹사이트 SammanCoaching.org에 관심이 있을 것이다.
 
 ## Kata Description
 
-Here is a description of the problem this code is designed to solve: [Tennis Kata](https://sammancoaching.org/kata_descriptions/tennis.html). 
+다음은 이 코드가 해결하도록 설계된 문제에 대한 설명입니다. [Tennis Kata](https://sammancoaching.org/kata_descriptions/tennis.html).
 
 ## Questions to discuss afterwards
 
-* How did it feel to work with such fast, comprehensive tests?
-* Did you make mistakes while refactoring that were caught by the tests?
-* If you used a tool to record your test runs, review it. Could you have taken smaller steps? Made fewer refactoring mistakes?
-* Did you ever make any refactoring mistakes and then back out your changes? How did it feel to throw away code?
-* What would you say to your colleague if they had written this code?
-* What would you say to your boss about the value of this refactoring work? Was there more reason to do it over and above the extra billable hour or so?
+* 이렇게 빠르고 포괄적인 테스트로 작업해 보니 어떠셨습니까?
+* 리팩터링 중에 테스트에서 잡힌 실수를 했습니까?
+* 테스트 실행을 기록하기 위해 도구를 사용한 경우 검토하십시오. 좀 더 작은 발걸음을 내디딜 수 있었습니까? 리팩터링 실수가 적었습니까?
+* 리팩터링 실수를 한 후 변경 사항을 취소한 적이 있습니까? 코드를 버린 기분이 어땠나요?
+* 동료가 이 코드를 작성했다면 어떻게 하시겠습니까?
+* 리팩터링 작업의 가치에 대해 상사에게 어떻게 생각하십니까? 청구할 수 있는 추가 시간이나 그 이상까지 그것을 할 이유가 더 있었습니까?
 
